@@ -50,8 +50,7 @@ router.put(
     const rta = await service.update(id, body);
     res.json({
       message: 'Updated',
-      data: rta,
-      id,
+      body
     });
   }
 );

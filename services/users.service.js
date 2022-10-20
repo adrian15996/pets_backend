@@ -5,17 +5,21 @@ const { models } = require('../libs/sequelize');
 class userService {
   constructor() {}
   async create(data) {
-    const rta = await models.User.create(data);
+    const newPerson = await models.Person.create(data.person);
+    const rta = await models.User.create({
+      ...data,
+      personId: newPerson.id,
+    });
     return rta;
   }
   async find() {
     const rta = await models.User.findAll({
-      include: ['customer'],
+      include:['person']
     });
     return rta;
   }
   async findOne(id) {
-    const rta = await models.User.findByPk(id);
+    const rta = await models.User.findByPk(id, {include:['pets']});
     if (!rta) {
       throw boom.notFound('User not Found');
     }

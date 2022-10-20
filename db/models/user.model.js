@@ -1,5 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-
+const { PERSON_TABLE } = require('./person.model');
+const { PETS_TABLE } = require('./pets.model');
 const USER_TABLE = 'users';
 
 const UserSchema = {
@@ -9,21 +10,30 @@ const UserSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER,
   },
-  email: {
-    allowNull: false,
+  aboutMe: {
+    allowNull: true,
     type: DataTypes.STRING,
-    unique: true,
-  },
-  password: {
-    allowNull: false,
-    type: DataTypes.STRING,
+    defaultValue: 'Estoy usando Animal App',
   },
   role: {
     allowNull: false,
     type: DataTypes.STRING,
-    defaultValue: 'customer',
+    defaultValue: 'user',
+  },
+  foto: {
+    allowNull: true,
+    type: DataTypes.STRING.BINARY,
   },
 
+  personId: {
+    allowNull: false,
+    field: 'id_person',
+    type: DataTypes.INTEGER,
+    references: {
+      model: PERSON_TABLE,
+      key: 'id_person',
+    },
+  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
@@ -35,8 +45,9 @@ const UserSchema = {
 class User extends Model {
   static associate(models) {
     //associate
-    this.hasOne(models.Customer, {
-      as: 'customer',
+    this.belongsTo(models.Person, { as: 'person' });
+    this.hasMany(models.Pets, {
+      as: 'pets',
       foreignKey: 'userId',
     });
   }
