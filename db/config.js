@@ -1,14 +1,17 @@
 const { config } = require('./../config/config');
 
 let URI =''
-if (config.isprod){
-  URI = config.DATABASE_URL
+if (config.isprod=="production"){
+  const USER = encodeURIComponent(config.PGUSER);
+  const PASSWORD = encodeURIComponent(config.PGPASSWORD);
+   URI = `postgres://${USER}:${PASSWORD}@${config.PGHOST}:${config.PGPORT}/${config.PGDATABASE}`;
+
 }else {
   const USER = encodeURIComponent(config.dbUser);
   const PASSWORD = encodeURIComponent(config.dbPassword);
    URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 }
-
+ 
 
 module.exports = {
   development: {
