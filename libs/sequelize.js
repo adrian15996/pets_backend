@@ -3,15 +3,14 @@ const { Sequelize } = require('sequelize');
 const { config } = require('../config/config');
 const setupModels = require('../db/models/index');
 
-let URI =''
+let URI = '';
 
-if (config.isprod){
+if (config.isprod === 'production') {
+  URI = config.DATABASE_URL;
+} else {
   const USER = encodeURIComponent(config.dbUser);
   const PASSWORD = encodeURIComponent(config.dbPassword);
-   URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
-
-}else{
-    URI = config.DATABASE_URL
+  URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 }
 
 const sequelize = new Sequelize(URI, {
@@ -20,6 +19,5 @@ const sequelize = new Sequelize(URI, {
 });
 
 setupModels(sequelize);
-
 
 module.exports = sequelize;

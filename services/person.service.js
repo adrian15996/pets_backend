@@ -9,9 +9,7 @@ class personService {
     return rta;
   }
   async find() {
-    const rta = await models.Person.findAll({
-      include:['persons']
-    });
+    const rta = await models.Person.findAll();
     return rta;
   }
   async findOne(id) {
