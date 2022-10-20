@@ -15,11 +15,16 @@ if (config.isprod=="production"){
 
 module.exports = {
   development: {
-    url: URI,
+    url: config.dbUrl,
     dialect: 'postgres',
   },
   production: {
-    url: URI,
+    url: config.dbUrl,
     dialect: 'postgres',
-  },
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: false
+      }
+    }
+  }
 };
