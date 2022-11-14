@@ -1,12 +1,14 @@
 const express = require('express');
 const routerApi = require('./routes');
 const cors = require('cors');
+
 const {
   logErrors,
   ErrorHandler,
   boomErrorHandler,
   ormErrorHandler,
 } = require('./middlewares/error.handler');
+const { checkApiKey } = require('./middlewares/auth.handler');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -24,7 +26,16 @@ const options = {
   },
 };
 app.use(cors());
-
+// app.post('/prueba', async (req, res) => {
+//   const body = req.body;
+//   const hash = await hashPassword(body.person.password);
+//   body.person.password = hash;
+//   res.status(201).json({
+//     message: 'User was created',
+//     body,
+//   });
+// });
+require('./utils/auth/index');
 routerApi(app);
 
 app.use(logErrors);

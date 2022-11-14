@@ -50,6 +50,14 @@ class Person extends Model {
       as: 'user',
       foreignKey: 'id_person',
     });
+    this.hasOne(models.Poster, {
+      as: 'poster',
+      foreignKey: 'id_person',
+    });
+    this.hasOne(models.Admin, {
+      as: 'admin',
+      foreignKey: 'id_person',
+    });
     
   }
   static config(sequelize) {

@@ -13,11 +13,19 @@ class personService {
     return rta;
   }
   async findOne(id) {
-    const rta = await models.Person.findByPk(id);
+    const rta = await models.Person.findByPk(id,{ include: { all: true },});
     if (!rta) {
       throw boom.notFound('User not Found');
     }
     return rta;
+  }
+  async findByEmail(email) {
+    const user = await models.Person.findOne({
+      where: { email },
+      include: { all: true },
+    });
+
+    return user;
   }
   async update(id, changes) {
     const person = await this.findOne(id);

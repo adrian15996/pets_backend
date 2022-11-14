@@ -7,9 +7,13 @@ class petService {
   async create(data) {
     const rta = await models.Pets.create(data);
     return rta;
-  }
-  async find() {
-    const rta = await models.Pets.findAll();
+  } 
+  async find(id) {
+    const rta = await models.Pets.findAll({
+      where:{
+        userId:id
+      }
+    });
     return rta;
   }
   async findOne(id) {

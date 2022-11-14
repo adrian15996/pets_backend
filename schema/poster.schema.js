@@ -5,12 +5,12 @@ const name = joi.string();
 const gender = joi.string();
 const email = joi.string().email();
 const phone = joi.string();
-const aboutMe = joi.string();
 const password = joi.string().min(6).max(20);
+const foto = joi.binary();
 
-const createUserSchema = joi.object({
+const createPosterSchema = joi.object({
   id: id,
-  aboutMe,
+  foto,
   person:{
     name:name.required(),
     gender:gender.required(),
@@ -20,8 +20,8 @@ const createUserSchema = joi.object({
   },
 });
 
-const updateUserSchema = joi.object({
-  aboutMe,
+const updatePosterSchema = joi.object({
+    foto,
   person: {
     name,
     gender,
@@ -31,8 +31,8 @@ const updateUserSchema = joi.object({
   }
 });
 
-const getUserSchema = joi.object({
+const getPosterSchema = joi.object({
   id: id.required(),
 });
 
-module.exports = { getUserSchema, updateUserSchema, createUserSchema };
+module.exports = { getPosterSchema, updatePosterSchema, createPosterSchema };

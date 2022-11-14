@@ -15,7 +15,9 @@ const config = {
   PGHOST: process.env.PGHOST,
   PGPASSWORD: process.env.PGPASSWORD,
   PGPORT: process.env.PGPORT,
-  PGUSER: process.env.PGUSER
+  PGUSER: process.env.PGUSER,
+  API_KEY:process.env.API_KEY,
+  JWT_SECRET: process.env.JWT_SECRET,
 };
 
 module.exports = { config };

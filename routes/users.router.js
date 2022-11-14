@@ -1,7 +1,11 @@
 const express = require('express');
+const passport = require('passport');
 const router = express.Router();
 const userService = require('../services/users.service');
 const service = new userService();
+const personService = require('../services/person.service');
+const servicePerson = new personService();
+const { checkRoles } = require('../middlewares/auth.handler');
 
 const validatorHandler = require('../middlewares/validator.handler');
 const {
@@ -22,36 +26,58 @@ router.get(
   }
 );
 
-router.get('/', async (req, res) => {
-  const users = await service.find();
-  res.json(users);
-});
+router.get(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'user'),
+  async (req, res, next) => {
+    try {
+      const users = await service.find(req.user.sub);
+
+      res.json(users);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 router.post(
   '/',
   validatorHandler(createUserSchema, 'body'),
-  async (req, res) => {
-    const body = req.body;
-    const rta = await service.create(body);
-    res.status(201).json({
-      message: 'User was created',
-      rta,
-    });
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const rta = await service.create(body);
+      res.status(201).json({
+        message: 'User was created',
+        rta,
+      });
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
 router.put(
-  '/:id',
-  validatorHandler(getUserSchema, 'params'),
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'user'),
   validatorHandler(updateUserSchema, 'body'),
-  async (req, res) => {
-    const { id } = req.params;
-    const body = req.body;
-    const rta = await service.update(id, body);
-    res.json({
-      message: 'Updated',
-      body
-    });
+  async (req, res, next) => {
+    try {
+      const id = req.user.sub;
+      const body = req.body;
+      const rta = await service.update(id, body);
+       const rta2 = await servicePerson.update(rta.personId,body.person)
+       delete rta2.dataValues.password;
+      res.json({
+        message: 'Updated',
+        rta,
+        rta2,
+      });
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
