@@ -30,6 +30,11 @@ const PersonSchema = {
     allowNull: false,
     type: DataTypes.STRING,
   },
+  recoveryToken: {
+    allowNull: true,
+    field: 'recovery_token',
+    type: DataTypes.STRING,
+  },
   phone: {
     allowNull: true,
     type: DataTypes.STRING,

@@ -8,16 +8,10 @@ const config = {
   dbHost: process.env.DB_HOST,
   dbName: process.env.DB_NAME,
   dbPort: process.env.DB_PORT,
-
-  DATABASE_URL:process.env.DATABASE_URL,
-  isProd: process.env.NODE_ENV ==='production',
-  PGDATABASE: process.env.PGDATABASE,
-  PGHOST: process.env.PGHOST,
-  PGPASSWORD: process.env.PGPASSWORD,
-  PGPORT: process.env.PGPORT,
-  PGUSER: process.env.PGUSER,
   API_KEY:process.env.API_KEY,
   JWT_SECRET: process.env.JWT_SECRET,
+  GM_PASSWORD:process.env.GM_PASSWORD,
+  GM_CORREO:process.env.GM_CORREO,
 };
 
 module.exports = { config };
