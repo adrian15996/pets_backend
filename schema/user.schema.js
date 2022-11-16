@@ -13,9 +13,9 @@ const createUserSchema = joi.object({
   aboutMe,
   person:{
     name:name.required(),
-    gender:gender.required(),
+    gender,
     email:email.required(),
-    phone:phone.required(),
+    phone,
     password:password.required(),
   },
 });
