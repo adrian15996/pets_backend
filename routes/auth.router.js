@@ -11,6 +11,7 @@ router.post('/login',
   async (req, res, next) => {
     try {
       const user = req.user;
+      console.log(user.user.role)
       res.json(service.signToken(user));
     } catch (error) {
       next(error);

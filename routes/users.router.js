@@ -29,7 +29,7 @@ router.get(
 router.get(
   '/',
   passport.authenticate('jwt', { session: false }),
-  checkRoles('admin', 'user'),
+  checkRoles('administrador', 'user'),
   async (req, res, next) => {
     try {
       const users = await service.find(req.user.sub);
