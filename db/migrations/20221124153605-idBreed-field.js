@@ -9,6 +9,7 @@ module.exports = {
       allowNull: false,
       type: DataTypes.STRING,
       field: 'id_breed',
+      defaultValue: '1',
     });
   },
 
