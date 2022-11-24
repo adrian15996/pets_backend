@@ -23,6 +23,12 @@ const PetsSchema = {
     defaultValue: 'MACHO',
   }
   ,
+  idBreed:{
+    allowNull: false,
+    type: DataTypes.STRING,
+    field: 'id_breed',
+  }
+  ,
   breed: {
     allowNull: false,
     type: DataTypes.STRING,
