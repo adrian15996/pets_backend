@@ -57,6 +57,7 @@ const PetsSchema = {
   typePet: {
     allowNull: false,
     type: DataTypes.STRING,
+    defaultValue: '1',
   },
   dateOfBirth: {
     allowNull: true,

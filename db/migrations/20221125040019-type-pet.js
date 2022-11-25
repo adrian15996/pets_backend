@@ -9,6 +9,7 @@ module.exports = {
       allowNull: false,
       type: DataTypes.STRING,
       field: 'type_pet',
+      defaultValue: '1',
     });
   },
 
