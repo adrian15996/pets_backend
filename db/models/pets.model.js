@@ -37,12 +37,24 @@ const PetsSchema = {
     defaultValue: '1',
   }
   ,
+  idTP:{
+    allowNull: false,
+    type: DataTypes.STRING,
+    field: 'id_type_pet',
+    defaultValue: '1',
+  }
+  ,
   breed: {
     allowNull: false,
     type: DataTypes.STRING,
     defaultValue: 'desconocida',
   },
   size: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    field: 'type_pet',
+  },
+  typePet: {
     allowNull: false,
     type: DataTypes.STRING,
   },

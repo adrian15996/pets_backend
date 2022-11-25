@@ -5,9 +5,11 @@ const name = joi.string();
 const gender = joi.string();
 const breed = joi.string();
 const size = joi.string();
+const typePet = joi.string();
 const dateOfBirth = joi.date();
 const idBreed = joi.string();
 const idPet = joi.string();
+const idTP = joi.string();
 
 
 const createPetSchema = joi.object({
@@ -17,7 +19,10 @@ const createPetSchema = joi.object({
   size: size.required(),
   dateOfBirth: dateOfBirth.required(),
   idBreed:idBreed.required(),
-  idPet:idPet.required()
+  idPet:idPet.required(),
+  idTP:idTP.required(),
+  typePet:typePet.required(),
+
 });
 
 const updatePetSchema = joi.object({
@@ -27,7 +32,9 @@ const updatePetSchema = joi.object({
   size: size,
   dateOfBirth: dateOfBirth,
   idBreed,
-  idPet
+  idPet,
+  idTP,
+  typePet
 });
 
 const getPetSchema = joi.object({
