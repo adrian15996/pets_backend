@@ -52,11 +52,11 @@ const PetsSchema = {
   size: {
     allowNull: false,
     type: DataTypes.STRING,
-    field: 'type_pet',
   },
   typePet: {
     allowNull: false,
     type: DataTypes.STRING,
+    field: 'type_pet',
     defaultValue: '1',
   },
   dateOfBirth: {
