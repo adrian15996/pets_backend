@@ -21,7 +21,7 @@ const UserSchema = {
   },
   foto: {
     allowNull: true,
-    type: DataTypes.STRING.BINARY,
+    type: DataTypes.STRING,
   },
 
   personId: {

@@ -8,10 +8,13 @@ const config = {
   dbHost: process.env.DB_HOST,
   dbName: process.env.DB_NAME,
   dbPort: process.env.DB_PORT,
-  API_KEY:process.env.API_KEY,
+  API_KEY: process.env.API_KEY,
   JWT_SECRET: process.env.JWT_SECRET,
-  GM_PASSWORD:process.env.GM_PASSWORD,
-  GM_CORREO:process.env.GM_CORREO,
+  GM_PASSWORD: process.env.GM_PASSWORD,
+  GM_CORREO: process.env.GM_CORREO,
+  CLOUD_NAME: process.env.CLOUD_NAME,
+  API_KEY: process.env.API_KEY,
+  API_SECRET: process.env.API_SECRET,
 };
 
 module.exports = { config };
