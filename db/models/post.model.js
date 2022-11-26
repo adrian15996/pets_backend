@@ -15,6 +15,10 @@ const PostSchema = {
     allowNull: false,
     type: DataTypes.STRING,
   },
+  foto: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
   contenido: {
     allowNull: false,
     type: DataTypes.TEXT,
