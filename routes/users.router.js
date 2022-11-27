@@ -65,7 +65,7 @@ router.put(
   '/',
   passport.authenticate('jwt', { session: false }),
   checkRoles('admin', 'user'),
-  validatorHandler(updateUserSchema, 'body'),upload.single('file'),
+  validatorHandler(updateUserSchema, 'body'),upload.single('thumbnail'),
   async (req, res, next) => {
     try {
       const id = req.user.sub;
