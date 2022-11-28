@@ -78,7 +78,6 @@ router.put(
 
         body.foto = secure_url;
       }
-      console.log(req.file)
       const rta = await service.update(id, body);
       const rta2 = await servicePerson.update(rta.personId, body.person);
       delete rta2.dataValues.password;

@@ -4,6 +4,8 @@ const passport = require('passport');
 const petsService = require('../services/pets.service');
 const service = new petsService();
 const { checkRoles } = require('../middlewares/auth.handler');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const validatorHandler = require('../middlewares/validator.handler');
 const {
@@ -47,11 +49,11 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   checkRoles('admin', 'user'),
   validatorHandler(createPetSchema, 'body'),
+
   async (req, res, next) => {
     try {
       const body = req.body;
       body.userId = req.user.sub;
-      console.log(body);
       const rta = await service.create(body);
       res.status(201).json({
         message: 'pet was created',
@@ -69,10 +71,18 @@ router.put(
   checkRoles('admin', 'user'),
   validatorHandler(getPetSchema, 'params'),
   validatorHandler(updatePetSchema, 'body'),
+  upload.single('thumbnail'),
   async (req, res, next) => {
     try {
       const { idPets } = req.params;
       const body = req.body;
+      const file = req.file;
+      if (file) {
+        const { secure_url, public_id } = await cloud.uploader.upload(
+          file.path
+        );
+        body.foto = secure_url;
+      }
       const rta = await service.update(idPets, body);
       res.json({
         message: 'Updated',
@@ -98,7 +108,7 @@ router.delete(
         message,
       });
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
 );
