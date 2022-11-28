@@ -4,6 +4,7 @@ const passport = require('passport');
 const petsService = require('../services/pets.service');
 const service = new petsService();
 const { checkRoles } = require('../middlewares/auth.handler');
+const cloud = require('../utils/cloudinary/');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
