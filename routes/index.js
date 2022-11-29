@@ -7,7 +7,8 @@ const administratorRouter = require('./administrator.router');
 const posterRouter = require('./poster.router');
 const categoryRouter = require('./category.router');
 const postRouter = require('./post.router');
-
+const VeterinaryRouter = require('./veterinary.router');
+const VaccineRouter = require('./vaccine.router');
 
 
 
@@ -22,7 +23,8 @@ function routerApi(app) {
   router.use('/poster', posterRouter);
   router.use('/category', categoryRouter);
   router.use('/post', postRouter);
+  router.use('/veterinary', VeterinaryRouter);
+  router.use('/vaccine', VaccineRouter);
 
-  
 }
 module.exports = routerApi;

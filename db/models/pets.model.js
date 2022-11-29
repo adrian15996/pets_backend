@@ -83,14 +83,22 @@ const PetsSchema = {
     type: DataTypes.DATE,
     field: 'create_at',
     defaultValue: Sequelize.fn('NOW'),
-  },
+  }
 };
 
 class Pets extends Model {
   static associate(models) {
     //associate
     this.belongsTo(models.User, { as: 'user' });
-   
+
+    this.hasMany(models.Veterinary, {
+      as: 'Veterinary',
+      foreignKey: 'petId',
+    });
+    this.hasMany(models.Vaccine, {
+      as: 'vaccine',
+      foreignKey: 'petId',
+    });
   }
   static config(sequelize) {
     return {
