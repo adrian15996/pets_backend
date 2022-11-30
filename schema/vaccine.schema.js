@@ -22,7 +22,7 @@ const createVaccineSchema = joi.object({
 const updateVaccineSchema = joi.object({
   name: name.required(),
   date: date.required(),
-  tag: tag.required(),
+  tag,
   nextVaccine,
   firma,
   petId: petId.required(),
