@@ -77,6 +77,8 @@ const PetsSchema = {
       model: USER_TABLE,
       key: 'id',
     },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
   },
   createdAt: {
     allowNull: false,

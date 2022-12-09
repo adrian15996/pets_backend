@@ -28,6 +28,8 @@ const PosterSchema = {
       model: PERSON_TABLE,
       key: 'id_person',
     },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
   },
   createdAt: {
     allowNull: false,

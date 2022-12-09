@@ -31,6 +31,8 @@ const PostSchema = {
       model: POSTER_TABLE,
       key: 'id_poster',
     },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
   },
   categoryId: {
     allowNull: false,
@@ -40,6 +42,8 @@ const PostSchema = {
       model: CATEGORY_TABLE,
       key: 'id_category',
     },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
   },
   createdAt: {
     allowNull: false,

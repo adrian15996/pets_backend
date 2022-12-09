@@ -40,6 +40,8 @@ const VaccineSchema = {
       model: PETS_TABLE,
       key: 'id_pets',
     },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
   },
   veterinaryId: {
     allowNull: false,
@@ -49,6 +51,8 @@ const VaccineSchema = {
       model: VETERINARY_TABLE,
       key: 'id',
     },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
   },
   createdAt: {
     allowNull: false,
