@@ -2,7 +2,7 @@ const boom = require('@hapi/boom');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
-
+const { Expo } = require('expo-server-sdk')
 const { config } = require('./../config/config');
 const PersonService = require('./person.service');
 const service = new PersonService();
@@ -60,8 +60,8 @@ class AuthService {
         throw boom.unauthorized();
       }
       const hash = await bcrypt.hash(newPassword, 10);
-      await service.update(user.id, { recoveryToken: null, password:hash});
-      return {message:'password changed'}
+      await service.update(user.id, { recoveryToken: null, password: hash });
+      return { message: 'password changed' };
     } catch (error) {
       throw boom.unauthorized();
     }
@@ -80,6 +80,7 @@ class AuthService {
     await transporter.sendMail(infoMail);
     return { message: 'mail sent' };
   }
+
 }
 
 module.exports = AuthService;

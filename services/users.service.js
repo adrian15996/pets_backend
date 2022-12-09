@@ -28,6 +28,16 @@ class userService {
     return rta;
   }
 
+  // async getNotification(id) {
+  //   const rta = await models.User.findByPk(id,{
+  //     include: ['pets']
+  //   });
+  //   if (!rta) {
+  //     throw boom.notFound('User not Found');
+  //   }
+  //   return rta;
+  // }
+
   async findOne(id) {
     const rta = await models.User.findByPk(id, { include: ['person'] });
     if (!rta) {

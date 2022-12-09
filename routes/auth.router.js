@@ -42,4 +42,17 @@ router.post('/change-password',
   }
 );
 
+router.post('/',
+  async (req, res, next) => {
+    try {
+      const rta = await service.prueba();
+      res.json(rta);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 module.exports = router;
+
+

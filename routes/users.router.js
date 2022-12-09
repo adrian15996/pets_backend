@@ -17,6 +17,21 @@ const {
   createUserSchema,
 } = require('../schema/user.schema');
 
+// router.get(
+//   '/notification',
+//   passport.authenticate('jwt', { session: false }),
+//   checkRoles('administrador', 'user'),
+//   async (req, res, next) => {
+//     try {
+//       console.log(req.user.sub);
+//       const users = await service.getNotification(req.user.sub);
+//       res.json(users);
+//     } catch (error) {
+//       next(error);
+//     }
+//   }
+// );
+
 router.get(
   '/:id',
   validatorHandler(getUserSchema, 'params'),
@@ -43,6 +58,9 @@ router.get(
     }
   }
 );
+
+
+
 
 router.post(
   '/',

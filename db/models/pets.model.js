@@ -99,6 +99,10 @@ class Pets extends Model {
       as: 'vaccine',
       foreignKey: 'petId',
     });
+    this.hasMany(models.Notification, {
+      as: 'Notification',
+      foreignKey: 'petId',
+    });
   }
   static config(sequelize) {
     return {

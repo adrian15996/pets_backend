@@ -7,6 +7,8 @@ const { Category, CategorySchema } = require('./category.model');
 const { Admin, AdminSchema } = require('./administrador.model');
 const { Veterinary, VeterinarySchema } = require('./veterinary.model');
 const { Vaccine, VaccineSchema } = require('./vaccines.model');
+const { Notification, NotificationSchema } = require('./notification.model');
+
 
 
 const setupModels = (sequelize) => {
@@ -19,6 +21,8 @@ const setupModels = (sequelize) => {
   Admin.init(AdminSchema, Admin.config(sequelize));
   Veterinary.init(VeterinarySchema, Veterinary.config(sequelize));
   Vaccine.init(VaccineSchema, Vaccine.config(sequelize));
+  Notification.init(NotificationSchema, Notification.config(sequelize));
+
 
 
   Person.associate(sequelize.models);
@@ -30,6 +34,9 @@ const setupModels = (sequelize) => {
   Admin.associate(sequelize.models);
   Veterinary.associate(sequelize.models);
   Vaccine.associate(sequelize.models);
+  Notification.associate(sequelize.models);
+
+  
 
 };
 

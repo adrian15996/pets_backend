@@ -13,10 +13,11 @@ class petService {
       where: {
         userId: id,
       },
-      include:  ['Veterinary','vaccine'],
+      include:  ['Veterinary','vaccine','Notification'],
     });
     return rta;
   }
+  
   async findOne(id) {
     const rta = await models.Pets.findByPk(id);
     if (!rta) {
